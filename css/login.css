@@ -1,0 +1,104 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"; 
+ 
+body{ 
+ margin: 0; 
+ padding: 0; 
+ font-family: sans-serif; 
+  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.8)),url(../css/background2.jpg);   
+  background-attachment: fixed; 
+  background-repeat: no-repeat; 
+  background-size: cover; 
+} 
+ 
+ul{ 
+ float: right; 
+ list-style-type: none; 
+ margin-top: 25px; 
+} 
+ 
+ul li{ 
+ display: inline-block; 
+} 
+ 
+ul li a{ 
+ text-decoration: none; 
+ color: #fff; 
+ padding: 5px 20px; 
+ border: 1px solid transparent; 
+ transition: 0.6s ease; 
+} 
+ul li a:hover{ 
+ background-color:#fff; 
+ color:#000; 
+} 
+ul li.active a { 
+ background-color:#fff; 
+ color:#000; 
+} 
+ 
+ 
+.login-box{ 
+ width: 280px; 
+ position: absolute; 
+ top: 50%; 
+ left: 50%; 
+ transform: translate(-50%, -50%); 
+ color: white; 
+} 
+ 
+.login-box h1{ 
+  float: left; 
+  font-size: 40px; 
+  border-bottom: 6px solid  #FFFAFA; 
+  margin-bottom: 50px; 
+  padding: 13px 0; 
+} 
+ 
+.textbox{ 
+ width: 100%; 
+ overflow: hidden; 
+ font-size:20px; 
+ padding: 9px 0; 
+ margin: 9px 0; 
+ border-bottom: 1px solid  #FFFAFA; 
+} 
+ 
+.textbox i{ 
+ width:26px; 
+ float: left; 
+ text-align: center; 
+} 
+  
+ 
+.textbox input{ 
+ border: none; 
+ outline: none; 
+ background: none; 
+ color: white; 
+ font-size: 18px; 
+ width:80%; 
+ float: left;  
+ margin: 0 10px; 
+ transition: width 3s; 
+} 
+ 
+.btn{ 
+ width: 100%; 
+ border: 2px solid #FFFAFA; 
+ background: none; 
+ color: white; 
+ padding: 5px; 
+ transition: 0.6s ease; 
+ cursor: pointer; 
+} 
+.btn:hover{ 
+ background-color:#fff; 
+ color:#000; 
+} 
+ 
+.Registration{ 
+ position: absolute; 
+ top: 67%; 
+ left:40%; 
+ color: white; 
+}
