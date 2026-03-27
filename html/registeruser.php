@@ -13,9 +13,8 @@
 
 <nav>
     <ul>
-        <li class="active"><a href="../html/loginmasuk.php">Log In</a></li>
-        <li><a href="../html/intro.html">Home</a></li>
-        <li><a href="../html/aboutus.html">About Us</a></li>
+        <li><a href="../html/intro.php">Home</a></li>
+        <li><a href="../html/aboutus.php">About Us</a></li>
         <li><a href="../html/daftarpeserta.php">Register</a></li>
     </ul>
 </nav>
