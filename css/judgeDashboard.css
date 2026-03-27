@@ -1,0 +1,287 @@
+/* ============================================================
+   judgeDashboard.css
+   Matches the dark background theme from login.css / intro.css
+   ============================================================ */
+
+/* ── Base ───────────────────────────────────────────────────── */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)),
+                      url(../images/background2.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    min-height: 100vh;
+}
+
+/* ── Nav (reuses same pattern as login.css) ─────────────────── */
+nav ul {
+    float: right;
+    list-style: none;
+    margin-top: 25px;
+    padding-right: 2vw;
+}
+
+nav ul li { display: inline-block; }
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 20px;
+    border: 1px solid transparent;
+    transition: 0.4s ease;
+}
+
+nav ul li a:hover,
+nav ul li.active a {
+    background-color: #fff;
+    color: #000;
+}
+
+/* ── Dashboard wrapper ──────────────────────────────────────── */
+.dashboard-wrapper {
+    width: 88vw;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 0 60px; /* top padding clears the floated nav */
+}
+
+/* ── Header row: title + search side by side ────────────────── */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.dashboard-header h1 {
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.welcome {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+}
+
+/* ── Search box ─────────────────────────────────────────────── */
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 8px 14px;
+}
+
+.search-box i { color: rgba(255,255,255,0.4); }
+
+.search-box input {
+    background: none;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 0.9rem;
+    width: 220px;
+}
+
+.search-box input::placeholder { color: rgba(255,255,255,0.35); }
+
+/* ── Table wrapper ──────────────────────────────────────────── */
+.table-wrapper {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+}
+
+thead tr {
+    background: rgba(255,255,255,0.08);
+}
+
+th {
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.55);
+}
+
+td {
+    padding: 13px 18px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.88);
+}
+
+tbody tr:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+/* ── Mark badge ─────────────────────────────────────────────── */
+/* A coloured pill showing the student's current mark.
+   Colour class is set by PHP based on score band. */
+.mark-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 99px;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.mark-none { background: rgba(255,255,255,0.1);  color: rgba(255,255,255,0.4); }
+.mark-good { background: rgba(76,175,80,0.2);    color: #81c784; } /* green  ≥75 */
+.mark-avg  { background: rgba(255,152,0,0.2);    color: #ffb74d; } /* orange ≥50 */
+.mark-low  { background: rgba(244,67,54,0.2);    color: #e57373; } /* red    <50 */
+
+/* ── Edit button ────────────────────────────────────────────── */
+.edit-btn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    transition: background 0.25s ease, border-color 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.edit-btn:hover {
+    background: rgba(255,255,255,0.16);
+    border-color: rgba(255,255,255,0.5);
+}
+
+/* ── No results message ─────────────────────────────────────── */
+.no-results {
+    text-align: center;
+    color: rgba(255,255,255,0.4);
+    margin-top: 60px;
+    font-size: 1rem;
+}
+
+/* ── Modal overlay ──────────────────────────────────────────── */
+/* Hidden by default. JS adds .active to show it. */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0; /* shorthand for top/right/bottom/left: 0 */
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+
+/* JS adds this class to show the modal */
+.modal-overlay.active {
+    display: flex;
+}
+
+/* ── Modal box ──────────────────────────────────────────────── */
+.modal-box {
+    background: #1a1a2e;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px;
+    padding: 36px 40px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.modal-box h2 {
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+.modal-subtitle {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    margin-top: -8px;
+}
+
+.modal-box label {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.modal-box input[type="number"] {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+    width: 100%;
+}
+
+.modal-box input[type="number"]:focus {
+    border-color: rgba(255,255,255,0.5);
+}
+
+/* ── Modal action buttons ───────────────────────────────────── */
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 6px;
+}
+
+.btn-cancel {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+    padding: 8px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-cancel:hover {
+    border-color: rgba(255,255,255,0.5);
+    color: white;
+}
+
+.btn-save {
+    background: white;
+    border: none;
+    color: #000;
+    padding: 8px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: background 0.2s ease;
+}
+
+.btn-save:hover {
+    background: #ddd;
+}
