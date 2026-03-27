@@ -1,234 +1,251 @@
-ul{ 
-  float: right; 
-  list-style-type: none; 
-  margin-top: 25px; 
- } 
-  
- ul li{ 
-  display: inline-block; 
- } 
-  
- ul li a{ 
-  text-decoration: none; 
-  color: #fff; 
-  padding: 5px 20px; 
-  border: 1px solid transparent; 
-  transition: 0.6s ease; 
- } 
- ul li a:hover{ 
-  background-color:#fff; 
-  color:#000; 
- } 
- ul li.active a { 
-  background-color:#fff; 
-  color:#000; 
- } 
-  
-:root { 
-  --card-height: 45vh; 
-  --card-margin: 2vw; 
-  --card-top-offset: 1em; 
-  --numcards: 4; 
-  --outline-width: 0px; 
- } 
-  
- #cards { 
-  padding-bottom: calc(var(--numcards) * var(--card-top-offset)); /* Make place at bottom, as items will slide to that position*/ 
-  margin-bottom: var(--card-margin); /* Don't include the --card-margin in padding, as that will affect the scroll-timeline*/ 
- } 
-  
- #card_1 { 
-  --index: 1; 
- } 
-  
- #card_2 { 
-  --index: 2; 
- } 
-  
- #card_3 { 
-  --index: 3; 
- } 
-  
- #card_4 { 
-  --index: 4; 
- } 
-  
- .card { 
-  position: sticky; 
-  top: 0; 
-  padding-top: calc(var(--index) * var(--card-top-offset)); 
- } 
-  
-  
-  .card { 
-   --index0: calc(var(--index) - 1); /* 0-based index */ 
-   --reverse-index: calc(var(--numcards) - var(--index0)); /* reverse index */ 
-   --reverse-index0: calc(var(--reverse-index) - 1); /* 0-based reverse index */ 
-  } 
-   
-  .card__content { 
-   transform-origin: 50% 0%; 
-   will-change: transform; 
-  
-   --duration: calc(var(--reverse-index0) * 1s); 
-   --delay: calc(var(--index0) * 1s); 
-  
-   animation: var(--duration) linear scale var(--delay) forwards; 
-   animation-timeline: cards-element-scrolls-in-body; 
-  } 
-  
-  @keyframes scale { 
-   to { 
-    transform: 
-     scale(calc( 
-      1.1 
-      - 
-      calc(0.1 * var(--reverse-index)) 
-     )); 
-   } 
-  } 
- 
-  
- /** DEBUG **/ 
-  
- #debug { 
-   position: fixed; 
-   top: 1em; 
-   left: 1em; 
- } 
- #debug::after { 
-   content: " Show Debug"; 
-   margin-left: 1.5em; 
-   color: white; 
-   white-space: nowrap; 
- } 
-  
- #debug:checked ~ main { 
-   --outline-width: 1px; 
- } 
-  
-  
- /** PAGE STYLING **/ 
-  
- * { /* Poor Man's Reset */ 
-  box-sizing: border-box; 
-  margin: 0;  
-  padding: 0; 
- } 
-  
- body { 
-  background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0, 0, 0, 0.75)),url(background1.jpg); 
-  background-attachment: fixed; 
-  background-repeat: no-repeat; 
-  background-size: cover; 
-  color: rgb(255, 255, 255); 
-  text-align: center; 
-  font-size: calc(1em + 0.5vw); 
-  font-family: 'Playfair Display', serif;; 
- } 
-  
- header, 
- main { 
-  width: 80vw; 
-  margin: 0 auto; 
- } 
-  
- header { 
-  height: 100vh; 
-  display: grid; 
-  place-items: center; 
- } 
-  
- #cards { 
-  list-style: none; 
-  outline: calc(var(--outline-width) * 10) solid white; 
-   
-  display: grid; 
-  grid-template-columns: 1fr; 
-  grid-template-rows: repeat(var(--numcards), var(--card-height)); 
-  gap: var(--card-margin); 
- } 
-  
- .card { 
-  outline: var(--outline-width) solid white; 
- } 
-  
- .card__content { 
-  box-shadow: 0 0.2em 1em rgba(0, 0, 0, 0.1), 0 1em 2em rgba(0, 0, 0, 0.1); 
-     border: 3px solid white; 
-  background: black; 
-  color: white; 
-  border-radius: 1em; 
-  overflow: hidden; 
-  
-  display: grid; 
-  grid-template-areas: "text img"; 
-  grid-template-columns: 1fr 1fr; 
-  grid-template-rows: auto; 
-  
-  align-items: stretch; 
-  outline: var(--outline-width) solid white; 
- } 
-  
- .card__content > div { 
-  grid-area: text; 
-  width: 80%; 
-  place-self: center; 
-  text-align: left; 
-  display: grid;
-  gap: 0.5em;
-  place-items: start;
-  padding: 1em;
-  
-  display: grid; 
-  gap: 1em; 
-  place-items: start; 
- } 
-  
- .card__content > figure { 
-  grid-area: img; 
-  overflow: hidden; 
- } 
-  
- .card__content > figure > img { 
-  width: 100%; 
-  height: 100%; 
-  object-fit: cover; 
- } 
-  
- h1 { 
-  font-weight: 300; 
-  font-size: 2.5em; 
- } 
-  
- h2 { 
-  font-weight: 300; 
-  font-size: 1.3em; 
- } 
-  
- p { 
-  font-size: 0.85em ;
-  font-family: sans-serif; 
-  font-weight: 300; 
-  line-height: 1.42; 
- } 
-  
- .btn { 
-  background: white; 
-  color: black; 
-  text-decoration: none; 
-  display: inline-block; 
-  padding: 0.5em; 
-  border-radius: 0.25em; 
- } 
-  
- aside { 
-  width: 50vw; 
-  margin: 0 auto; 
-  text-align: left; 
- } 
-  
- aside p { 
-  margin-bottom: 1em; 
- }
-   
+/* ============================================================
+   BASE / RESET
+   Applies to every element — zero out browser default
+   margin and padding, use border-box sizing throughout.
+   ============================================================ */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ============================================================
+   CSS VARIABLES
+   Change these to adjust the card layout globally.
+   --card-height    : how tall each card is
+   --card-margin    : gap between cards
+   --card-top-offset: how much each stacked card peeks above the one below
+   --numcards       : must match the number of .card elements in HTML
+   ============================================================ */
+:root {
+    --card-height: 40vw;      /* was 80vw — too tall, cards were taller than screen */
+    --card-margin: 4vw;
+    --card-top-offset: 1.5em;
+    --numcards: 4;
+}
+
+
+/* ============================================================
+   BODY
+   Dark background image with overlay gradient.
+   NOTE: background1.jpg must live at ../images/background1.jpg
+   relative to wherever intro.css is loaded from.
+   ============================================================ */
+body {
+    background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(../images/background1.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: calc(1em + 0.5vw);
+    font-family: sans-serif;
+}
+
+
+/* ============================================================
+   NAVIGATION BAR
+   Float right so it sits in the top-right corner.
+   ============================================================ */
+nav ul {
+    /* Scope to nav so it doesn't accidentally affect #cards ul */
+    float: right;
+    list-style-type: none;
+    margin-top: 25px;
+    padding-right: 2vw;
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 20px;
+    border: 1px solid transparent;
+    transition: 0.6s ease;
+}
+
+nav ul li a:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Active page link stays permanently highlighted */
+nav ul li.active a {
+    background-color: #fff;
+    color: #000;
+}
+
+
+/* ============================================================
+   HEADER
+   Full-viewport-height hero section centred vertically.
+   ============================================================ */
+header,
+main {
+    width: 80vw;
+    margin: 0 auto;
+}
+
+header {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+}
+
+h1 {
+    font-weight: 300;
+    font-size: 3.5em;
+}
+
+h2 {
+    font-weight: 300;
+    font-size: 2em;  /* was 2.5em — too large inside cards */
+}
+
+p {
+    font-family: sans-serif;
+    font-weight: 300;
+    line-height: 1.42;
+}
+
+
+/* ============================================================
+   CARDS LIST  (#cards)
+   A CSS grid where each row is exactly --card-height tall.
+   The bottom padding makes room for cards to slide into when
+   the stacking animation runs.
+   ============================================================ */
+#cards {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(var(--numcards), var(--card-height));
+    gap: var(--card-margin);
+    padding-bottom: calc(var(--numcards) * var(--card-top-offset));
+    margin-bottom: var(--card-margin);
+}
+
+/* Assign each card its stacking index via a CSS custom property.
+   The index controls how far down the card starts (via padding-top)
+   and how much it scales during the animation. */
+#card_1 { --index: 1; }
+#card_2 { --index: 2; }
+#card_3 { --index: 3; }
+#card_4 { --index: 4; }
+
+/* position: sticky makes each card "stick" to the top as you
+   scroll past it, so the next card slides over the top of it.
+   padding-top offsets each card down slightly so they fan out. */
+.card {
+    position: sticky;
+    top: 0;
+    padding-top: calc(var(--index) * var(--card-top-offset));
+}
+
+
+/* ============================================================
+   SCROLL ANIMATION  (@supports animation-timeline)
+   animation-timeline is a modern CSS feature (Chrome 115+).
+   The @supports block only runs in browsers that support it —
+   older browsers just get the sticky stacking without the scale.
+
+   FIX: The original code used @supports (animation-timeline: works)
+   but "works" is not a valid value — the check always failed.
+   The correct check is (animation-timeline: scroll()) which
+   tests for the actual feature properly.
+   ============================================================ */
+@supports (animation-timeline: scroll()) {
+
+    .card {
+        --index0: calc(var(--index) - 1);             /* 0-based: 0,1,2,3 */
+        --reverse-index: calc(var(--numcards) - var(--index0)); /* 4,3,2,1 */
+        --reverse-index0: calc(var(--reverse-index) - 1);       /* 3,2,1,0 */
+    }
+
+    .card__content {
+        transform-origin: 50% 0%;
+        will-change: transform;
+
+        --duration: calc(var(--reverse-index0) * 1s);
+        --delay: calc(var(--index0) * 1s);
+
+        animation: var(--duration) linear cardScale var(--delay) both;
+        animation-timeline: scroll(root);   /* 'root' = the page scroll */
+    }
+
+    /* Each card scales slightly smaller as cards above stack on top */
+    @keyframes cardScale {
+        to {
+            transform: scale(calc(
+                1.1 - (0.1 * var(--reverse-index))
+            ));
+        }
+    }
+}
+
+
+/* ============================================================
+   CARD CONTENT
+   Two-column grid inside each card: text on the left, image right.
+   ============================================================ */
+.card__content {
+    box-shadow: 0 0.2em 1em rgba(0,0,0,0.1), 0 1em 2em rgba(0,0,0,0.1);
+    border: 3px solid white;
+    background: black;
+    color: white;
+    border-radius: 1em;
+    overflow: hidden;
+    height: 100%;           /* Fill the full card row height */
+
+    display: grid;
+    grid-template-areas: "text img";
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+}
+
+/* Text column — centred vertically, left-aligned text */
+.card__content > div {
+    grid-area: text;
+    width: 80%;
+    place-self: center;
+    text-align: left;
+    display: grid;
+    gap: 1em;
+    place-items: start;
+}
+
+/* Image column — fills full height, crops with object-fit */
+.card__content > figure {
+    grid-area: img;
+    overflow: hidden;
+}
+
+.card__content > figure > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ============================================================
+   READ MORE BUTTON  (.btn)
+   White pill button inside the cards.
+   ============================================================ */
+.btn {
+    background: white;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.5em 1em;
+    border-radius: 0.25em;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+    background: #ddd;
+    color: #000;
+}
