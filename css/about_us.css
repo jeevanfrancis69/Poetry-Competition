@@ -1,13 +1,14 @@
 * {
-    font-family: sans-serif;;
+    font-family: 'Georgia', serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-size: medium;
 }
 
 body {
-    background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.716)), url("../css/background3.jpg");
+    /* Matches login.css and intro.css — same dark overlay pattern */
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)),
+                      url("../images/background3.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -15,58 +16,54 @@ body {
     min-height: 100vh;
 }
 
-/* ===== NAVBAR ===== */
-ul {
+/* ============================================================
+   NAVIGATION
+   Matches the nav style from login.css exactly —
+   float right, inline links, white hover invert.
+   ============================================================ */
+nav ul {
     float: right;
     list-style-type: none;
-    margin-top: 10px;
-    position: absolute;
-    right: 20px;
-    top: 10px;
+    margin-top: 25px;
+    padding-right: 2vw;
 }
 
-ul li {
+nav ul li {
     display: inline-block;
 }
 
-ul li a {
+nav ul li a {
     text-decoration: none;
     color: #fff;
     padding: 5px 20px;
     border: 1px solid transparent;
     transition: 0.6s ease;
-    font-size: 1.2rem;
+    font-family: sans-serif;  /* nav uses sans-serif like the rest of the site */
+    font-size: 0.9rem;
 }
 
-ul li a:hover {
-    background-color: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.4);
-    border-radius: 4px;
-    color: #fff;
+nav ul li a:hover,
+nav ul li.active a {
+    background-color: #fff;
+    color: #000;
 }
 
-ul li.active a {
-    background-color: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.4);
-    border-radius: 4px;
-    color: #fff;
-}
-
-/* ===== HEADINGS ===== */
+/* ============================================================
+   HEADINGS
+   ============================================================ */
 h1 {
-    font-family: sans-serif;
     font-weight: 600;
     font-size: 64px;
     color: white;
     text-align: center;
+    letter-spacing: 0.05em;
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 h4 {
-    font-family: sans-serif;
     font-weight: 400;
     font-size: 18px;
-    color: #b0b0b0;
+    color: rgba(255, 255, 255, 0.55);
     line-height: 1.6;
     text-align: center;
 }
@@ -76,14 +73,18 @@ h4 {
     padding-bottom: 10px;
 }
 
-/* ===== FORM CONTAINER ===== */
+/* ============================================================
+   FORM CONTAINER
+   ============================================================ */
 .input-container {
     width: 650px;
     max-width: 100%;
     margin: 30px auto 40px auto;
 }
 
-/* ===== INPUTS ===== */
+/* ============================================================
+   STYLED INPUTS — floating label pattern
+   ============================================================ */
 .styled-input {
     float: left;
     width: 293px;
@@ -93,9 +94,7 @@ h4 {
 }
 
 @media only screen and (max-width: 768px) {
-    .styled-input {
-        width: 100%;
-    }
+    .styled-input { width: 100%; }
 }
 
 .styled-input.wide {
@@ -104,54 +103,48 @@ h4 {
 }
 
 .styled-input label {
-    color: #999;
+    color: rgba(255, 255, 255, 0.4);
     padding: 1.3rem 30px 1rem 30px;
     position: absolute;
     top: 10px;
     left: 0;
     transition: all 0.25s ease;
     pointer-events: none;
-    background-image: none;
     font-size: 0.95rem;
     letter-spacing: 0.03em;
 }
 
+/* Float the label up when input is focused or filled */
 input:focus ~ label,
 textarea:focus ~ label,
 input:valid ~ label,
 textarea:valid ~ label {
     font-size: 0.72em;
-    color: #c9a84c;
+    color: #fff;
     top: -5px;
     transition: all 0.225s ease;
 }
 
-input, textarea {
-    background-image: none;
-    background-color: rgba(0, 0, 0, 0.45);
+input,
+textarea {
+    background-color: rgba(255, 255, 255, 0.05); /* matches login.css glassmorphism */
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);  /* matches login.css textbox border */
     padding: 30px;
     width: 100%;
     font-size: 1rem;
     border-radius: 6px;
     box-sizing: border-box;
     transition: border 0.3s ease, box-shadow 0.3s ease;
-    font-family: sans-serif;
+    font-family: 'Georgia', serif;
 }
 
 input:focus,
 textarea:focus {
     outline: 0;
-    border: 1px solid rgba(201, 168, 76, 0.7);
-    box-shadow: 0 0 10px rgba(201, 168, 76, 0.2);
-    background-color: rgba(0, 0, 0, 0.6);
-}
-
-input:focus ~ span,
-textarea:focus ~ span {
-    width: 100%;
-    transition: all 0.075s ease;
+    border: 1px solid rgba(255, 255, 255, 0.6); /* white border on focus — matches site */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 textarea {
@@ -162,38 +155,32 @@ textarea {
     resize: none;
 }
 
-/* ===== SUBMIT BUTTON ===== */
+/* ============================================================
+   SUBMIT BUTTON
+   Matches .btn from login.css — white border, inverts on hover
+   ============================================================ */
 .submit-btn {
     float: right;
-    padding: 0;
-    border-radius: 60px;
-    background-color: transparent;
-    border: 1px solid rgba(201, 168, 76, 0.7);
-    font-size: 18px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
-    transition: all 300ms ease;
     margin-top: 10px;
 }
 
-.submit-btn:hover {
-    background-color: rgba(201, 168, 76, 0.2);
-    box-shadow: 0 0 12px rgba(201, 168, 76, 0.3);
-    transform: translateY(1px);
-}
-
 .submit-btn input[type=submit] {
-    background-image: none;
-    background-color: transparent;
-    color: #c9a84c;
-    border: none;
+    background: none;
+    color: white;
+    border: 2px solid #FFFAFA; /* same as login.css .btn */
     cursor: pointer;
-    font-size: 16px;
-    padding: 12px 35px;
+    font-size: 15px;
+    padding: 8px 30px;
     letter-spacing: 0.08em;
     font-family: sans-serif;
-    border-radius: 60px;
+    border-radius: 4px;
+    transition: 0.6s ease;
     width: auto;
+}
+
+.submit-btn input[type=submit]:hover {
+    background-color: #fff;
+    color: #000;
 }
 
 @media (max-width: 768px) {
