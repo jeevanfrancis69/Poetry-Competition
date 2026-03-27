@@ -52,7 +52,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
                 title: 'Registered!',
                 text: data.message,
             }).then(() => {
-                window.location.href = 'loginmasuk.php';
+                window.location.href = '../html/intro.php';
             });
 
         } else if (data.status === 'pending') {
@@ -62,7 +62,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
                 title: 'Application Submitted',
                 text: data.message,
             }).then(() => {
-                window.location.href = '../html/intro.html';
+                window.location.href = '../html/intro.php';
             });
 
         } else {
