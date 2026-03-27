@@ -1,104 +1,263 @@
-@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"; 
- 
-body{ 
- margin: 0; 
- padding: 0; 
- font-family: sans-serif; 
-  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.8)),url(../css/background2.jpg);   
-  background-attachment: fixed; 
-  background-repeat: no-repeat; 
-  background-size: cover; 
-} 
- 
-ul{ 
- float: right; 
- list-style-type: none; 
- margin-top: 25px; 
-} 
- 
-ul li{ 
- display: inline-block; 
-} 
- 
-ul li a{ 
- text-decoration: none; 
- color: #fff; 
- padding: 5px 20px; 
- border: 1px solid transparent; 
- transition: 0.6s ease; 
-} 
-ul li a:hover{ 
- background-color:#fff; 
- color:#000; 
-} 
-ul li.active a { 
- background-color:#fff; 
- color:#000; 
-} 
- 
- 
-.login-box{ 
- width: 280px; 
- position: absolute; 
- top: 50%; 
- left: 50%; 
- transform: translate(-50%, -50%); 
- color: white; 
-} 
- 
-.login-box h1{ 
-  float: left; 
-  font-size: 40px; 
-  border-bottom: 6px solid  #FFFAFA; 
-  margin-bottom: 50px; 
-  padding: 13px 0; 
-} 
- 
-.textbox{ 
- width: 100%; 
- overflow: hidden; 
- font-size:20px; 
- padding: 9px 0; 
- margin: 9px 0; 
- border-bottom: 1px solid  #FFFAFA; 
-} 
- 
-.textbox i{ 
- width:26px; 
- float: left; 
- text-align: center; 
-} 
-  
- 
-.textbox input{ 
- border: none; 
- outline: none; 
- background: none; 
- color: white; 
- font-size: 18px; 
- width:80%; 
- float: left;  
- margin: 0 10px; 
- transition: width 3s; 
-} 
- 
-.btn{ 
- width: 100%; 
- border: 2px solid #FFFAFA; 
- background: none; 
- color: white; 
- padding: 5px; 
- transition: 0.6s ease; 
- cursor: pointer; 
-} 
-.btn:hover{ 
- background-color:#fff; 
- color:#000; 
-} 
- 
-.Registration{ 
- position: absolute; 
- top: 67%; 
- left:40%; 
- color: white; 
+/* ============================================================
+   EXTERNAL DEPENDENCIES
+   ============================================================ */
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css";
+
+
+/* ============================================================
+   BASE / RESET
+   ============================================================ */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), url(../images/background2.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/* ============================================================
+   NAVIGATION BAR
+   ============================================================ */
+ul {
+    float: right;
+    list-style-type: none;
+    margin-top: 25px;
+}
+
+ul li {
+    display: inline-block;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 20px;
+    border: 1px solid transparent;
+    transition: 0.6s ease;
+}
+
+/* Hover state: invert colours */
+ul li a:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Active page link stays highlighted */
+ul li.active a {
+    background-color: #fff;
+    color: #000;
+}
+
+
+/* ============================================================
+   LOGIN / REGISTER BOX
+   Centred card that holds the form on both pages.
+   ============================================================ */
+.login-box {
+    width: 280px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.login-box h1 {
+    display: block;        /* was float:left — that broke the flow of everything below it */
+    width: 100%;
+    font-size: 40px;
+    border-bottom: 6px solid #FFFAFA;
+    margin-bottom: 30px;
+    padding: 13px 0;
+    text-align: center;
+}
+
+
+/* ============================================================
+   ROLE SELECTION — card-style toggle (Student / Judge)
+   Two side-by-side cards replace the plain radio buttons.
+   The hidden <input type="radio"> still handles form submission;
+   the card visual is driven entirely by CSS + the .active class
+   toggled by JS in toggleFields().
+   ============================================================ */
+.role-selection {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 24px;
+    /* Clear the h1's old float just in case */
+    clear: both;
+}
+
+/* Each card is a <label> wrapping a hidden radio + icon + text */
+.role-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.05);
+    transition: transform 0.25s ease, border-color 0.25s ease,
+                color 0.25s ease, background 0.25s ease,
+                box-shadow 0.25s ease;
+    /* Hide the native radio button — the card IS the selector */
+    user-select: none;
+}
+
+.role-card input[type="radio"] {
+    display: none;
+}
+
+.role-card i {
+    font-size: 22px;
+    transition: transform 0.25s ease;
+}
+
+.role-card span {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* Hover: lift + brighten */
+.role-card:hover {
+    transform: translateY(-3px) scale(1.04);
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.role-card:hover i {
+    transform: scale(1.2);
+}
+
+/* Active (selected) state — set by JS adding .active class */
+.role-card.active {
+    border-color: #fff;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ============================================================
+   JUDGE PENDING-APPROVAL NOTICE
+   Shown below the role cards when "Judge" is chosen.
+   ============================================================ */
+.judge-notice {
+    display: none; /* Hidden by default; JS sets display:block */
+    clear: both;
+    background: rgba(255, 193, 7, 0.12);
+    border: 1px solid rgba(255, 193, 7, 0.45);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    color: #ffe082;
+    font-size: 0.82rem;
+    text-align: center;
+    animation: judgeNoticeIn 0.3s ease;
+}
+
+.judge-notice i {
+    margin-right: 6px;
+}
+
+@keyframes judgeNoticeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   FORM INPUT ROWS  (.textbox)
+   Each row is an icon + text/password/email input side by side.
+   ============================================================ */
+.textbox {
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 9px 0;
+    margin: 9px 0;
+    border-bottom: 1px solid #FFFAFA;
+}
+
+/* Icon sits flush left */
+.textbox i {
+    width: 26px;
+    float: left;
+    text-align: center;
+}
+
+/* Input fills remaining width */
+.textbox input {
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+    font-size: 18px;
+    width: 80%;
+    float: left;
+    margin: 0 10px;
+    transition: width 3s;
+}
+
+
+/* ============================================================
+   COLLAPSIBLE EXTRA FIELDS  (#extraFields)
+   Email + Age inputs shown for Students, hidden for Judges.
+   JS toggles the .collapsed class; CSS handles the animation.
+   ============================================================ */
+#extraFields {
+    overflow: hidden;
+    max-height: 200px; /* Enough to fit two .textbox rows */
+    opacity: 1;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+/* Add this class via JS to smoothly collapse the section */
+#extraFields.collapsed {
+    max-height: 0;
+    opacity: 0;
+    pointer-events: none; /* Prevents interaction with hidden inputs */
+}
+
+
+/* ============================================================
+   SUBMIT BUTTON  (.btn)
+   ============================================================ */
+.btn {
+    width: 100%;
+    border: 2px solid #FFFAFA;
+    background: none;
+    color: white;
+    padding: 5px;
+    transition: 0.6s ease;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+
+/* ============================================================
+   REGISTRATION LINK  (.Registration)
+   "Don't have an account?" link shown on the login page only.
+   ============================================================ */
+.Registration {
+    position: absolute;
+    top: 67%;
+    left: 40%;
+    color: white;
 }
