@@ -1,0 +1,6 @@
+.vs/
+*.log
+*.tmp*:Zone.Identifier
+connect.php
+*.env
+*.env
