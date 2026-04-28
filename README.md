@@ -1,4 +1,4 @@
-# Pertandingan Mendeklamasikan Sajak
+# Poetry Recitation Competition
 
 A web-based poetry recitation competition management system built with PHP and MySQL. The system handles student and judge registration, mark entry, result viewing, and admin approval of judges.
 
